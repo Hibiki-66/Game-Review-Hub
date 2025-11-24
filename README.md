@@ -1,24 +1,59 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# Game Review Hub
 
-Things you may want to cover:
+## サイト概要
 
-* Ruby version
+### サイトテーマ
+買い切りゲームを中心にレビュー・評価・情報共有ができるレビューサイトです。
 
-* System dependencies
+### テーマを選んだ理由
+近年のゲーム市場では、タイトル価格の高騰やサービス型ゲームの増加により、ユーザーがどのゲームを購入すべきか判断しづらくなっています。  
+私自身もゲーム購入前に複数のレビューを参照することが多く、情報収集に手間を感じていました。
 
-* Configuration
+また、買い切りゲームは DLC の有無によって定義が曖昧になり、比較や評価が難しいという課題があります。  
+ユーザーが「買う価値があるか」を判断しやすくするため、レビューを集約し信頼性の高い情報を提供できるサービスを作ろうと考えました。
 
-* Database creation
+### 買い切りゲームの定義（本サービスにおける扱い）
+本サービスでは以下の条件を満たすゲームを「買い切りゲーム」と定義します。
 
-* Database initialization
+- 本編を購入することで最後まで遊べるゲーム  
+- 追加DLCが存在しても、本編のみで主要な体験が成立する作品は買い切りゲームとして扱う  
 
-* How to run the test suite
+以下のタイプは買い切りゲームに含めません。
 
-* Services (job queues, cache servers, search engines, etc.)
+- 継続的な課金が前提のサービス型ゲーム  
+- DLCを購入しないと十分なプレイ体験が成立しない作品  
+- サブスクリプション依存のゲーム（Game Pass / Apple Arcade など）
 
-* Deployment instructions
+### ターゲットユーザ
+- ゲーム購入前に評価をしっかり確認したい人  
+- ゲーム価格の高騰により購入を慎重に行う人  
+- 自分に近いプレイスタイル・趣味のユーザーから情報を得たい人  
+- 買い切りゲームが好きなプレイヤー  
 
-* ...
+### 主な利用シーン
+- 購入前にゲームのレビューを確認したい時  
+- 遊んだゲームの感想を投稿したい時  
+- 気になるゲームの長所・短所を比較したい時  
+- 自分と感性の合うユーザーを見つけたい時  
+
+---
+
+## 設計書
+後ほど作成予定
+
+---
+
+## 開発環境
+- OS：Windows  
+- 言語：HTML, CSS, JavaScript, Ruby, SQL  
+- フレームワーク：Ruby on Rails  
+- JSライブラリ：jQuery  
+- IDE：Visual Studio Code (VSCode)
+
+---
+
+## 使用素材
+著作権を考慮し、すべて架空のデータを扱う予定です。  
+実在するゲームタイトルや画像素材を利用する場合は、著作権保持者と契約の上で使用します。
