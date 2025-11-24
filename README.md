@@ -1,5 +1,3 @@
-# README
-
 # Game Review Hub
 
 ## サイト概要
