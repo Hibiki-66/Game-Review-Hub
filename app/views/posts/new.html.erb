@@ -1,10 +1,25 @@
 <h2>レビュー</h2>
+
+<% if @post.errors.any? %>
+  <%= @post.errors.count %>件のエラーが発生しました
+  <ul>
+    <% @post.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
 <%= form_with model: @post do |f| %>
+
   <h4>タイトル</h4>
   <%= f.text_field :review_title %>
+
   <h4>ゲーム名</h4>
   <%= f.text_field :game_title %>
+
   <h4>本文</h4>
   <%= f.text_area :body %>
+
   <%= f.submit '投稿' %>
+  
 <% end %>
