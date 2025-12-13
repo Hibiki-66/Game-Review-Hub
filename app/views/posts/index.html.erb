@@ -3,8 +3,8 @@
 <% @posts.each do |post| %>
   <div>
     <p>タイトル：<%= post.review_title %></p>
-    <p>ショップ名：<%= post.game_title %></p>
-    <p>説明：<%= post.body %></p>
+    <p>ゲームタイトル：<%= post.game_title %></p>
+    <p>本文：<%= post.body %></p>
     <p>ユーザーネーム：<%= post.user.name %></p>
   </div>
 <% end %>
