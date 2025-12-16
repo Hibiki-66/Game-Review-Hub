@@ -3,7 +3,6 @@ class CreatePosts < ActiveRecord::Migration[6.1]
     create_table :posts do |t|
 
       t.integer :user_id
-      t.integer :tag_id
       t.string :review_title
       t.string :game_title
       t.text :body
