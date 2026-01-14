@@ -11,6 +11,7 @@
   </head>
 
   <body>
+    <p>lorem ipsum</p>
     <header>
     <% if user_signed_in? %>
       <li>
@@ -34,6 +35,9 @@
       </li>
     <% end %>
     </header>
+      <div>
+        <%= flash[:notice] %>
+      </div>
     <%= yield %>
   </body>
 </html>
