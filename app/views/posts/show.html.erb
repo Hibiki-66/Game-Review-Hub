@@ -1,6 +1,7 @@
 <div>
   <p>タイトル：<%= @post.review_title %></p>
   <p>ゲームタイトル：<%= @post.game_title %></p>
+  <p>コメント数： <%= @post.post_comments.count %></p>
   <p>本文：<%= @post.body %></p>
   <p>投稿ユーザー画像：<%= image_tag @post.user.get_profile_image(100,100) %></p>
   <p><%= render "favorites/btn", post: @post %></p>
@@ -10,5 +11,8 @@
     <%= link_to "編集", edit_post_path(@post.id) %>
     <%= link_to "削除", post_path(@post), method: :delete, "data-confirm" => "本当に退会しますか？" %>
   <% end %>
+
+  <%= render "post_comments/index", post: @post %>
+  <%= render "post_comments/form", post: @post, post_comment: @post_comment %>
 
 </div>
