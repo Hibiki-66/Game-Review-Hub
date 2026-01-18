@@ -3,6 +3,7 @@ class Post < ApplicationRecord
 
   has_many :post_comments, dependent: :destroy
   has_many :post_tags, dependent: :destroy
+  has_many :favorites, dependent: :destroy
 
   validates :review_title, presence: true
   validates :game_title, presence: true
@@ -20,6 +21,10 @@ class Post < ApplicationRecord
     else
       @post = Post.all
     end
+  end
+
+  def favorited_by?(user)
+    favorites.exists?(user_id: user.id)
   end
 
 end

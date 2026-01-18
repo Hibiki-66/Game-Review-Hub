@@ -10,5 +10,6 @@
     <p>本文：<%= post.body %></p>
     <p>投稿ユーザー画像：<%= image_tag post.user.get_profile_image(100,100) %></p>
     <p>ユーザーネーム：<%= post.user.name %></p>
+    <p><%= render "favorites/btn", post: post %></p>
   </div>
 <% end %>
