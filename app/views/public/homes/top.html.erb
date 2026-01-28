@@ -1,1 +1,65 @@
-<h1>top</h1>
+<div class="container mt-5">
+
+  <!-- サービス説明 -->
+  <div class="row justify-content-center mb-5">
+    <div class="col-md-8 text-center">
+      <h1 class="mb-3">Game Review</h1>
+      <p class="text-muted">
+        あなたの好きなゲームをレビューしよう。<br>
+        みんなの感想を見て、新しいゲームに出会える。
+      </p>
+
+      <% unless user_signed_in? %>
+        <div class="mt-4">
+          <%= link_to "ログイン", new_user_session_path,
+                class: "btn btn-primary mr-2" %>
+          <%= link_to "新規登録", new_user_registration_path,
+                class: "btn btn-outline-primary" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <!-- 最新投稿 -->
+  <div class="row justify-content-center">
+    <div class="col-md-10">
+
+      <h4 class="mb-4 text-center">最新レビュー</h4>
+
+      <div class="row">
+        <% @posts.each do |post| %>
+          <div class="col-md-4">
+            <div class="card mb-4 h-100">
+              <div class="card-body">
+
+                <h5 class="card-title">
+                  <%= link_to post.review_title, post_path(post),
+                        class: "text-dark font-weight-bold" %>
+                </h5>
+
+                <p class="card-text text-muted mb-1">
+                  <%= post.game_title %>
+                </p>
+
+                <p class="card-text">
+                  <%= truncate(post.body, length: 60) %>
+                </p>
+
+              </div>
+
+              <div class="card-footer bg-white">
+                <div class="d-flex align-items-center">
+                  <%= image_tag post.user.get_profile_image(40,40),
+                        class: "rounded-circle mr-2" %>
+                  <small><%= post.user.name %></small>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+
+    </div>
+  </div>
+
+</div>

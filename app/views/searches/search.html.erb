@@ -1,24 +1,52 @@
-<h2>Results index</h2>
+<div class="container mt-5">
 
-<table class="table table-hover table-inverse">
-  <!--検索対象モデルがUserの時 -->
-  <% if @range == "User" %>
-    <tbody>
-      <% @users.each do |user| %>
-        <tr>
-          <td><%= user.name %></td>
-        </tr>
+  <h2 class="text-center mb-4">検索結果</h2>
+
+  <div class="table-responsive">
+    <table class="table table-hover">
+
+      <!-- 検索対象が User の場合 -->
+      <% if @range == "User" %>
+        <thead class="thead-light">
+          <tr>
+            <th>ユーザー名</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @users.each do |user| %>
+            <tr>
+              <td>
+                <%= link_to user.name, user_path(user),
+                      class: "text-dark font-weight-bold" %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+
+      <!-- 検索対象が Post の場合 -->
+      <% else %>
+        <thead class="thead-light">
+          <tr>
+            <th>ゲームタイトル</th>
+            <th>レビュー内容</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @posts.each do |post| %>
+            <tr>
+              <td>
+                <%= link_to post.game_title, post_path(post),
+                      class: "text-dark font-weight-bold" %>
+              </td>
+              <td>
+                <%= truncate(post.body, length: 80) %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
       <% end %>
-    </tbody>
-  <% else %>
-    <!--検索対象モデルがUserではない時(= 検索対象モデルがBookの時) -->
-    <tbody>
-      <% @posts.each do |post| %>
-        <tr>
-          <td><%= post.game_title %></td>
-          <td><%= post.body %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  <% end %>
-</table>
+
+    </table>
+  </div>
+
+</div>

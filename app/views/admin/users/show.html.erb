@@ -1,0 +1,11 @@
+<h2>ユーザー詳細</h2>
+
+<p>名前：<%= @user.name %></p>
+<p>Email：<%= @user.email %></p>
+<p>登録日：<%= @user.created_at.strftime('%Y/%m/%d') %></p>
+
+<hr>
+
+<%= link_to "退会させる", admin_user_path(@user), method: :delete, data: { confirm: "本当にこのユーザーを退会させますか？" }, class: "btn btn-danger" %>
+
+<%= link_to "一覧へ戻る", admin_users_path, class: "btn btn-secondary ml-2" %>

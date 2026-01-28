@@ -1,16 +1,54 @@
 
-<%= render 'searches/search' %>
-
-<h2>レビュー一覧</h2>
-
-<% @posts.each do |post| %>
-  <div>
-    <p>タイトル：<%= link_to post.review_title, post_path(post.id) %></p>
-    <p>ゲームタイトル：<%= post.game_title %></p>
-    <p>本文：<%= post.body %></p>
-    <p>投稿ユーザー画像：<%= image_tag post.user.get_profile_image(100,100) %></p>
-    <p>ユーザーネーム：<%= post.user.name %></p>
-    <p><%= render "public/favorites/btn", post: post %></p>
-    <p>コメント数： <%= post.post_comments.count %></p>
+<div class="container my-4">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <%= render 'searches/search' %>
+    </div>
   </div>
-<% end %>
+</div>
+
+<div class="container mt-4">
+  <h2 class="mb-4">レビュー一覧</h2>
+
+  <div class="row">
+    <% @posts.each do |post| %>
+      <div class="col-md-4 mb-4">
+        <div class="card h-100 shadow-sm">
+          <div class="card-body">
+            <!-- レビュータイトル -->
+            <h5 class="card-title">
+              <%= link_to post.review_title, post_path(post.id), class: "text-decoration-none" %>
+            </h5>
+
+            <!-- ゲームタイトル -->
+            <h6 class="card-subtitle mb-2 text-muted">
+              🎮 <%= post.game_title %>
+            </h6>
+
+            <!-- 本文（長すぎ防止） -->
+            <p class="card-text mt-2">
+              <%= truncate(post.body, length: 80) %>
+            </p>
+          </div>
+
+          <div class="card-footer bg-white">
+            <!-- ユーザー情報 -->
+            <div class="d-flex align-items-center mb-2">
+              <%= image_tag post.user.get_profile_image(40,40),
+                    class: "rounded-circle me-2" %>
+              <small class="text-muted"><%= post.user.name %></small>
+            </div>
+
+            <!-- アクション系 -->
+            <div class="d-flex justify-content-between align-items-center">
+              <%= render "public/favorites/btn", post: post %>
+              <small class="text-muted">
+                💬 <%= post.post_comments.count %>
+              </small>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

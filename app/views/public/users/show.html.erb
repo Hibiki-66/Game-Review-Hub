@@ -1,20 +1,60 @@
-<div>
-  <h3><%= @user.name %></h3>
-  <%= image_tag @user.get_profile_image(100,100) %>
-  <% if @user == current_user %>
-    <p><%= link_to "プロフィール編集", edit_user_path(@user) %></p>
-    <%= link_to "退会",user_path(current_user.id), class: "destroy-user", method: :delete, "data-confirm" => "本当に退会しますか？" %>
-  <% end %>
-</div>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-6 col-lg-5">
 
-<!-- ユーザーの投稿一覧 -->
+      <!-- プロフィール -->
+      <div class="card shadow-sm p-3 mb-4 text-center">
+        <%= image_tag @user.get_profile_image(80,80),
+              class: "rounded-circle mb-3" %>
 
-<% @posts.each do |post| %>
-  <div>
-    <p>タイトル：<%= link_to post.review_title, post_path(post.id) %></p>
-    <p>ゲームタイトル：<%= post.game_title %></p>
-    <p>本文：<%= post.body %></p>
-    <p>投稿ユーザー画像：<%= image_tag post.user.get_profile_image(100,100) %></p>
-    <p>ユーザーネーム：<%= post.user.name %></p>
+        <h4 class="mb-3"><%= @user.name %></h4>
+
+        <% if @user == current_user %>
+          <div class="d-flex justify-content-center">
+            <%= link_to "プロフィール編集",
+                  edit_user_path(@user),
+                  class: "btn btn-outline-primary mr-2" %>
+
+            <%= link_to "退会",
+                  user_path(current_user),
+                  method: :delete,
+                  data: { confirm: "本当に退会しますか？" },
+                  class: "btn btn-outline-danger" %>
+          </div>
+        <% end %>
+      </div>
+
+      <!-- 投稿一覧 -->
+      <h4 class="mb-3">投稿一覧</h4>
+
+      <% @posts.each do |post| %>
+        <div class="card mb-3">
+          <div class="card-body">
+
+            <h5 class="card-title">
+              <%= link_to post.review_title, post_path(post),
+                    class: "text-dark font-weight-bold" %>
+            </h5>
+
+            <p class="card-text">
+              <strong>ゲームタイトル：</strong>
+              <%= post.game_title %>
+            </p>
+
+            <p class="card-text">
+              <%= truncate(post.body, length: 100) %>
+            </p>
+
+            <div class="d-flex align-items-center">
+              <%= image_tag post.user.get_profile_image(40,40),
+                    class: "rounded-circle mr-2" %>
+              <span><%= post.user.name %></span>
+            </div>
+
+          </div>
+        </div>
+      <% end %>
+
+    </div>
   </div>
-<% end %>
+</div>

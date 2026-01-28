@@ -1,9 +1,30 @@
-<h1>全ユーザー一覧</h1>
-<ul>
-  <% @users.each do |user| %>
-    <li>
-      <%= user.name %> - <%= user.email %>
-      <%= link_to '削除', admin_user_path(user), method: :delete, data: { confirm: '本当に削除しますか？' } %> 
-    </li>
-  <% end %>
-</ul>
+
+<h2 class="mb-4">管理者ダッシュボード</h2>
+
+<div class="row">
+  <!-- ユーザー -->
+  <div class="col-md-4">
+    <div class="card text-center shadow-sm">
+      <div class="card-body">
+        <h5 class="card-title">ユーザー数</h5>
+        <p class="display-4"><%= @users_count %></p>
+        <%= link_to "ユーザー一覧",
+              admin_users_path,
+              class: "btn btn-outline-primary btn-sm" %>
+      </div>
+    </div>
+  </div>
+
+  <!-- 投稿 -->
+  <div class="col-md-4">
+    <div class="card text-center shadow-sm">
+      <div class="card-body">
+        <h5 class="card-title">投稿数</h5>
+        <p class="display-4"><%= @posts_count %></p>
+        <%= link_to "投稿一覧",
+              admin_posts_path,
+              class: "btn btn-outline-success btn-sm" %>
+      </div>
+    </div>
+  </div>
+</div>

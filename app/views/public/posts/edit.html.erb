@@ -1,28 +1,47 @@
-<h2>編集画面</h2>
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
 
-<% if @post.errors.any? %>
-  <%= @post.errors.count %>件のエラーが発生しました
-  <ul>
-    <% @post.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-    <% end %>
-  </ul>
-<% end %>
+      <div class="card shadow-sm p-4">
+        <h2 class="text-center mb-4">編集画面</h2>
 
-<%= form_with model: @post do |f| %>
+        <% if @post.errors.any? %>
+          <div class="alert alert-danger">
+            <%= @post.errors.count %>件のエラーが発生しました
+            <ul class="mb-0">
+              <% @post.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
 
-  <h4>タイトル</h4>
-  <%= f.text_field :review_title %>
+        <%= form_with model: @post, local: true do |f| %>
 
-  <h4>ゲーム名</h4>
-  <%= f.text_field :game_title %>
+          <div class="form-group">
+            <%= f.label :review_title, "タイトル" %>
+            <%= f.text_field :review_title, class: "form-control" %>
+          </div>
 
-  <h4>本文</h4>
-  <%= f.text_area :body %>
+          <div class="form-group">
+            <%= f.label :game_title, "ゲーム名" %>
+            <%= f.text_field :game_title, class: "form-control" %>
+          </div>
 
-  <%= f.submit '保存' %>
+          <div class="form-group">
+            <%= f.label :body, "本文" %>
+            <%= f.text_area :body, class: "form-control", rows: 5 %>
+          </div>
 
-  <%= link_to "Show", post_path(@post.id) %>
-  <%= link_to "Back", posts_path %>
-  
-<% end %>
+          <div class="text-center mt-4">
+            <%= f.submit "保存", class: "btn btn-primary px-4 mr-2" %>
+            <%= link_to "詳細へ", post_path(@post), class: "btn btn-outline-secondary mr-2" %>
+            <%= link_to "一覧へ戻る", posts_path, class: "btn btn-outline-secondary" %>
+          </div>
+
+        <% end %>
+      </div>
+
+    </div>
+  </div>
+</div>

@@ -1,25 +1,43 @@
-<h2>レビュー</h2>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
 
-<% if @post.errors.any? %>
-  <%= @post.errors.count %>件のエラーが発生しました
-  <ul>
-    <% @post.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-    <% end %>
-  </ul>
-<% end %>
+      <h2 class="text-center mb-4">レビュー</h2>
 
-<%= form_with model: @post do |f| %>
+      <% if @post.errors.any? %>
+        <div class="alert alert-danger">
+          <%= @post.errors.count %>件のエラーが発生しました
+          <ul class="mb-0">
+            <% @post.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
 
-  <h4>タイトル</h4>
-  <%= f.text_field :review_title %>
+      <%= form_with model: @post, local: true do |f| %>
 
-  <h4>ゲーム名</h4>
-  <%= f.text_field :game_title %>
+        <div class="form-group">
+          <%= f.label :review_title, "タイトル" %>
+          <%= f.text_field :review_title, class: "form-control" %>
+        </div>
 
-  <h4>本文</h4>
-  <%= f.text_area :body %>
+        <div class="form-group">
+          <%= f.label :game_title, "ゲーム名" %>
+          <%= f.text_field :game_title, class: "form-control" %>
+        </div>
 
-  <%= f.submit '投稿' %>
-  
-<% end %>
+        <div class="form-group">
+          <%= f.label :body, "本文" %>
+          <%= f.text_area :body, class: "form-control", rows: 5 %>
+        </div>
+
+        <div class="text-center">
+          <%= f.submit '投稿', class: "btn btn-primary px-5" %>
+        </div>
+
+      <% end %>
+
+    </div>
+  </div>
+</div>
