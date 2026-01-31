@@ -27,6 +27,10 @@
             <%= f.label :game_title, "ゲーム名" %>
             <%= f.text_field :game_title, class: "form-control" %>
           </div>
+          
+          <div class="form-group">
+            <%= render "output_star", post: @post %>
+          </div>
 
           <div class="form-group">
             <%= f.label :body, "本文" %>

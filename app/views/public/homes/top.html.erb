@@ -41,6 +41,8 @@
                   <%= post.game_title %>
                 </p>
 
+                <%= render "public/posts/output_star", post: post %>
+
                 <p class="card-text">
                   <%= truncate(post.body, length: 60) %>
                 </p>

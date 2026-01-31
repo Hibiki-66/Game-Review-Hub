@@ -1,0 +1,21 @@
+<div id="star_<%= post.id %>" data-raty="false"></div>
+
+<script>
+document.addEventListener("turbolinks:load", function() {
+  let elem = document.querySelector('#star_<%= post.id %>');
+  if (!elem) return;
+  if (elem.dataset.raty === "true") return; // ← 重要！
+
+  raty(elem, {
+    starOn: "<%= asset_path('star-on.png') %>",
+    starOff: "<%= asset_path('star-off.png') %>",
+    starHalf: "<%= asset_path('star-half.png') %>",
+    score: <%= post.review.to_f %>,
+    readOnly: true
+  });
+
+  elem.dataset.raty = "true"; // 初期化済みフラグ
+});
+</script>
+
+

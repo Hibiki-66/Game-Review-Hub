@@ -25,6 +25,8 @@
               🎮 <%= post.game_title %>
             </h6>
 
+            <%= render "output_star", post: post %>
+
             <!-- 本文（長すぎ防止） -->
             <p class="card-text mt-2">
               <%= truncate(post.body, length: 80) %>
