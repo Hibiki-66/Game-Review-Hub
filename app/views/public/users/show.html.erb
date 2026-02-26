@@ -9,18 +9,14 @@
 
         <h4 class="mb-3"><%= @user.name %></h4>
 
-        <% if @user == current_user %>
-          <div class="d-flex justify-content-center">
-            <%= link_to "プロフィール編集",
-                  edit_user_path(@user),
-                  class: "btn btn-outline-primary mr-2" %>
+        <% unless @user.guest_user? %>
+          <% if @user == current_user %>
+            <div class="d-flex justify-content-center">
+              <%= link_to "プロフィール編集", edit_user_path(@user), class: "btn btn-outline-primary mr-2" %>
 
-            <%= link_to "退会",
-                  user_path(current_user),
-                  method: :delete,
-                  data: { confirm: "本当に退会しますか？" },
-                  class: "btn btn-outline-danger" %>
-          </div>
+              <%= link_to "退会", user_path(current_user), method: :delete, data: { confirm: "本当に退会しますか？" }, class: "btn btn-outline-danger" %>
+            </div>
+          <% end %>
         <% end %>
       </div>
 
